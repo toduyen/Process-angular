@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "projects": {
+    "bai7callapi": {
+      "projectType": "application",
+      "root": "apps/bai7callapi",
+      "sourceRoot": "apps/bai7callapi/src",
+      "prefix": "bai7-callapi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/bai7callapi",
+            "index": "apps/bai7callapi/src/index.html",
+            "main": "apps/bai7callapi/src/main.ts",
+            "polyfills": "apps/bai7callapi/src/polyfills.ts",
+            "tsConfig": "apps/bai7callapi/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/bai7callapi/src/favicon.ico",
+              "apps/bai7callapi/src/assets"
+            ],
+            "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "apps/bai7callapi/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/bai7callapi/src/environments/environment.ts",
+                  "with": "apps/bai7callapi/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "bai7callapi:build:production"
+            },
+            "development": {
+              "browserTarget": "bai7callapi:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bai7callapi:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/bai7callapi/src/**/*.ts",
+              "apps/bai7callapi/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/bai7callapi"],
+          "options": {
+            "jestConfig": "apps/bai7callapi/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "bai7callapi-e2e": {
+      "root": "apps/bai7callapi-e2e",
+      "sourceRoot": "apps/bai7callapi-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/bai7callapi-e2e/cypress.json",
+            "devServerTarget": "bai7callapi:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bai7callapi:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/bai7callapi-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["bai7callapi"]
+    }
+  }
+}

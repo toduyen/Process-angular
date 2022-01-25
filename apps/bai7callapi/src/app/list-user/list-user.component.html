@@ -1,0 +1,14 @@
+<div  *ngIf="loader.isLoading | async" class="processBarStype">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<p>list-user works!</p>
+<div id="1" class="item new col-md-4" *ngFor="let item of Datas">
+  <a href="single-product.html">
+    <div class="featured-item">
+      <p>{{item?.title}}</p>
+      <h4>{{item?.completed}}</h4>
+      <h6>{{item?.userId}}</h6>
+    </div>
+  </a>
+</div>
+
